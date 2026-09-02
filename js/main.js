@@ -343,7 +343,7 @@
         </div>
         <div class="markets-label">Markets available</div>
         <div class="market-tags">${ev.markets.map((mk) => `<span class="market-tag">${esc(mk)}</span>`).join('')}</div>
-        <button class="btn btn-primary btn-lg" style="margin-top:30px" data-open-register>${esc(ev.cta)}</button>
+        <button class="btn btn-key btn-lg" style="margin-top:30px" data-open-register>${esc(ev.cta)}</button>
       </div>
     `).join('');
 
