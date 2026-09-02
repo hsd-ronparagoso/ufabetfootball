@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online Football Betting Website | UFABET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-left">
+    <div class="brand">
+      <img src="assets/ufabet-logo.png" alt="UFABET" class="brand-logo">
+      <span class="brand-tag">Football</span>
+    </div>
+    <nav class="hdr-nav" aria-label="Primary">
+      <a href="#matches">Live Matches</a>
+      <a href="#howto">How to Bet</a>
+      <a href="#events">Events</a>
+      <a href="#markets">Bet Types</a>
+      <a href="#odds">Odds</a>
+    </nav>
+  </div>
+  <div class="header-right">
+    <button class="btn btn-ghost">Log in</button>
+    <button class="btn btn-primary shine" data-open-register>Register</button>
+  </div>
+  <button class="mob-menu-btn mob-only" aria-label="Open menu" aria-expanded="false" data-menu-toggle>
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<nav class="mobile-nav" data-mobile-nav aria-label="Mobile">
+  <a href="#matches" data-close-menu>Live Matches</a>
+  <a href="#howto" data-close-menu>How to Bet</a>
+  <a href="#events" data-close-menu>Events</a>
+  <a href="#markets" data-close-menu>Bet Types</a>
+  <a href="#odds" data-close-menu>Odds</a>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-h1">Online <span class="accent">Football Betting</span><br>Website</h1>
+      <p class="hero-p">
+        <strong>Football betting website</strong> options on UFABET bring together live scores, team statistics, and a full spread of wagering markets across the world's top leagues, continental tournaments, and international competitions. Every listed fixture displays team form, current odds, and match status, giving bettors the information needed to evaluate a game before placing a wager. The platform supports match-winner, handicap, over/under, both teams to score, and accumulator markets across every major football competition, including the Premier League, La Liga, Serie A, Bundesliga, and Ligue 1.
+      </p>
+      <details class="hero-details">
+        <summary>Show more</summary>
+        <p>
+          The <strong>best online football betting website</strong> updates odds continuously as a match progresses, reflecting goals, cards, and shifting momentum in real time. Desktop and mobile access remain fully optimized, keeping football betting available before kickoff and throughout every live match.
+        </p>
+      </details>
+      <div class="hero-ctas">
+        <button class="btn btn-danger btn-lg shine">Bet Now</button>
+        <button class="btn btn-gold btn-lg" data-open-register>Open Your Account</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-tile"><div class="stat-num">$1</div><div class="stat-label">Minimum stake</div></div>
+        <div class="stat-tile"><div class="stat-num">$50,000</div><div class="stat-label">Max World Cup bet</div></div>
+        <div class="stat-tile"><div class="stat-num">20</div><div class="stat-label">Competitions covered</div></div>
+        <div class="stat-tile"><div class="stat-num">24/7</div><div class="stat-label">Mobile availability</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="matches" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow eyebrow-green">In play now</div>
+          <h2 class="h2">Ongoing Football League Matches</h2>
+        </div>
+        <div class="chip-row">
+          <span class="chip chip-active">All</span>
+          <span class="chip">League</span>
+          <span class="chip">International</span>
+        </div>
+      </div>
+
+      <div class="matches-table" role="table" aria-label="Ongoing football matches">
+        <div class="m-row m-head" role="row">
+          <div role="columnheader">Team A vs Team B</div>
+          <div class="dt-col" role="columnheader">Time Remaining</div>
+          <div class="dt-col" role="columnheader">Possession / Shots / Cards</div>
+          <div role="columnheader">Odds / Favorite</div>
+          <div role="columnheader"></div>
+        </div>
+        <div id="matches-body"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="howto" class="section section-alt">
+    <div class="wrap">
+      <h2 class="h2">How to Bet on Football Online?</h2>
+      <p class="lede">To bet on football online, follow the eight steps below. Select a league to see the steps tailored to that competition.</p>
+
+      <div class="tab-row scroll-x" id="how-tabs"></div>
+
+      <h3 class="h3-gold" id="how-title"></h3>
+      <div class="steps-grid" id="how-steps"></div>
+    </div>
+  </section>
+
+  <section id="events" class="section">
+    <div class="wrap">
+      <h2 class="h2">What Football Events can you Bet Online?</h2>
+      <p class="lede lede-wide">Football events you can bet online span international tournaments, continental club competitions, and domestic league titles across every major footballing region. Betting limits vary by competition significance, with global tournaments supporting higher maximum stakes than smaller domestic fixtures.</p>
+
+      <div class="events-layout">
+        <div class="events-tabs scroll-x" id="event-tabs"></div>
+        <div class="event-detail" id="event-detail"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap two-col-grid">
+      <div>
+        <h2 class="h2 h2-sm">How to Register for an Online Football Betting Website?</h2>
+        <p class="lede">To register for an online football betting website, follow the five steps below.</p>
+        <div class="accordion" id="reg-steps"></div>
+
+        <div class="info-card">
+          <h3 class="h3-gold">How long does Football Betting Registration Take?</h3>
+          <p class="body-text">Football betting registration on UFABET takes between <strong>three and five minutes</strong> to complete from start to finish. Account activation generally follows shortly after documents clear review, granting immediate access to football betting markets.</p>
+          <h3 class="h3-gold h3-spaced">Can you Bet on Football Without downloading an App?</h3>
+          <p class="body-text"><strong>Yes.</strong> UFABET's browser-based platform offers full functionality on desktop and mobile browsers, including live scores and in-play betting markets, with no dedicated application required.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="h3-white">What Information is Needed to Register?</h3>
+        <p class="lede">The information needed to register for football betting is listed below.</p>
+        <div class="stacked-list" id="reg-info"></div>
+
+        <h3 class="h3-white h3-spaced-lg">What Should you Look for in an Online Football Betting Website?</h3>
+        <p class="lede">Why should you choose UFABET for football betting? Things to look for are listed below.</p>
+        <div class="stacked-list" id="look-for"></div>
+
+        <h3 class="h3-white h3-spaced-lg">How to Choose the Best Football Betting Website?</h3>
+        <div class="numbered-list" id="choose-steps"></div>
+
+        <div class="callout-card">
+          <div class="callout-title">UFABET football betting checks every box</div>
+          <div class="callout-body">Competitive odds, wide market variety, reliable payments, and responsive support across the Premier League, La Liga, Serie A, Bundesliga, Ligue 1, and every major international tournament.</div>
+          <button class="btn btn-gold" data-open-register>Choose UFABET Today</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="markets" class="section">
+    <div class="wrap">
+      <h2 class="h2">What Types of Bets can you Place on Football Matches?</h2>
+      <p class="lede lede-wide">The types of bets that can be placed on football matches are listed below. Select a market for its definition, who it suits, and its advantages.</p>
+
+      <div class="tab-row scroll-x" id="bet-tabs"></div>
+
+      <div class="markets-layout">
+        <div class="market-detail" id="market-detail"></div>
+        <div class="round-faq" id="round-faq"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="odds" class="section section-alt">
+    <div class="wrap">
+      <div class="eyebrow eyebrow-green">Reference</div>
+      <h2 class="h2">Deposits, Limits, Benefits, Strategy &amp; Odds</h2>
+
+      <div class="tab-row scroll-x" id="faq-tabs"></div>
+
+      <div class="faq-grid" id="faq-items"></div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="cta-inner">
+      <h2 class="h2 h2-center">Bet on every major football league with <span class="accent">UFABET</span></h2>
+      <p class="lede lede-center">Live odds from kickoff, in-play markets that update with every goal and card, and full mobile access without an app download.</p>
+      <div class="cta-buttons">
+        <button class="btn btn-danger btn-lg">Bet Now</button>
+        <button class="btn btn-outline btn-lg" data-open-register>Register</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="floating-cta">
+  <button class="btn btn-danger btn-pill shine" data-open-register>Bet Now</button>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <img src="assets/ufabet-logo.png" alt="UFABET" class="footer-logo">
+    <div class="footer-links">
+      <a href="#howto">How to Bet</a>
+      <a href="#events">Events</a>
+      <a href="#markets">Bet Types</a>
+      <a href="#odds">Odds</a>
+    </div>
+    <div class="footer-note">18+ only. Online football gambling legality depends on your jurisdiction. Bet responsibly.</div>
+  </div>
+</footer>
+
+<dialog class="register-dialog" data-register-dialog>
+  <div class="dialog-card">
+    <button class="dialog-close" aria-label="Close" data-close-register>&times;</button>
+    <div class="dialog-title">Open your account</div>
+    <div class="dialog-sub">Registration takes three to five minutes.</div>
+    <div class="dialog-fields">
+      <label class="field">Full legal name
+        <input placeholder="As shown on your ID">
+      </label>
+      <label class="field">Mobile number
+        <input placeholder="+66 00 000 0000">
+      </label>
+      <label class="field">Date of birth
+        <input placeholder="DD / MM / YYYY">
+      </label>
+      <label class="field">Preferred payout method
+        <input placeholder="Bank transfer or e-wallet">
+      </label>
+    </div>
+    <button class="btn btn-gold btn-block">Create Account</button>
+    <div class="dialog-disclaimer">Identity verification required. 18+ only. Bet responsibly.</div>
+  </div>
+</dialog>
+
+<script src="js/main.js"></script>
+</body>
+</html>
