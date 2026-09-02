@@ -327,7 +327,7 @@
     let eventIndex = 0;
 
     tabsEl.innerHTML = EVENTS.map((e, i) => `
-      <button class="event-tab-btn${i === eventIndex ? ' active' : ''}" data-event-tab="${i}">
+      <button class="tab-btn${i === eventIndex ? ' active-gold' : ''}" data-event-tab="${i}">
         <span class="event-tab-num">${String(i + 1).padStart(2, '0')}</span>${esc(e.name)}
       </button>
     `).join('');
@@ -349,7 +349,7 @@
 
     $$('[data-event-tab]', tabsEl).forEach((btn) => btn.addEventListener('click', () => {
       eventIndex = Number(btn.dataset.eventTab);
-      $$('[data-event-tab]', tabsEl).forEach((b) => b.classList.toggle('active', b === btn));
+      $$('[data-event-tab]', tabsEl).forEach((b) => b.classList.toggle('active-gold', b === btn));
       $$('[data-event-panel]', panelsEl).forEach((p) => { p.hidden = Number(p.dataset.eventPanel) !== eventIndex; });
     }));
 
