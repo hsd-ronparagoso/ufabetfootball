@@ -347,7 +347,7 @@ img { max-width: 100%; }
 .two-col-grid > * { min-width: 0; }
 
 .accordion { display: flex; flex-direction: column; gap: 8px; }
-.accordion-item { border: 1px solid var(--border-3); border-radius: 6px; background: var(--panel-4); cursor: pointer; overflow: hidden; }
+.accordion-item { border: 1px solid var(--border-3); border-radius: 6px; background: var(--panel-4); cursor: pointer; overflow: hidden; scroll-margin-top: 90px; }
 .accordion-item.open { border-color: var(--border-7); }
 .accordion-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; }
 .accordion-n { font-family: var(--font); font-size: 15px; color: var(--gold); }
@@ -355,6 +355,10 @@ img { max-width: 100%; }
 .accordion-sign { font-family: var(--font); font-size: 22px; color: var(--gold); }
 .accordion-body { max-height: 0; padding: 0 18px; font-size: 14px; line-height: 1.6; color: var(--text-dimmer); overflow: hidden; transition: max-height .25s ease, padding .25s ease; }
 .accordion-item.open .accordion-body { max-height: 220px; padding: 0 18px 18px 46px; }
+
+#bet-accordion .accordion-item.open .accordion-body { max-height: 620px; padding: 0 18px 24px 46px; }
+#bet-accordion .market-body { font-size: 14px; line-height: 1.65; }
+#bet-accordion .market-facts { margin-top: 18px; }
 
 .info-card { margin-top: 30px; padding: 24px; border: 1px solid var(--border-3); border-radius: 6px; background: var(--panel-2); }
 
@@ -400,6 +404,7 @@ img { max-width: 100%; }
 
 /* ---------- FAQ / odds section ---------- */
 .faq-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; margin-top: 26px; }
+.faq-grid[hidden] { display: none; }
 .faq-card { padding: 24px; background: var(--panel-4); border: 1px solid var(--border-3); border-radius: 6px; }
 .faq-card:hover { border-color: var(--border-7); }
 .faq-q { margin: 0; font-family: var(--font); font-size: 21px; font-weight: 500; color: var(--gold); text-transform: uppercase; }

@@ -284,27 +284,34 @@
    * How to Bet tabs
    * ------------------------------------------------------------------- */
 
-  let howIndex = 0;
   function renderHow() {
     const tabsEl = $('#how-tabs');
-    const titleEl = $('#how-title');
-    const stepsEl = $('#how-steps');
-    if (!tabsEl || !titleEl || !stepsEl) return;
+    const panelsEl = $('#how-panels');
+    if (!tabsEl || !panelsEl) return;
+
+    let howIndex = 0;
 
     tabsEl.innerHTML = HOW.map((t, i) => `<button class="tab-btn${i === howIndex ? ' active-gold' : ''}" data-how-tab="${i}">${esc(t.label)}</button>`).join('');
-    const how = HOW[howIndex];
-    titleEl.textContent = how.title;
-    stepsEl.innerHTML = how.steps.map((s) => `
-      <div class="step-card">
-        <div class="step-num">${s.n}</div>
-        <div class="step-title">${esc(s.t)}</div>
-        <div class="step-desc">${esc(s.d)}</div>
+
+    panelsEl.innerHTML = HOW.map((how, i) => `
+      <div class="how-panel" data-how-panel="${i}"${i === howIndex ? '' : ' hidden'}>
+        <h3 class="h3-gold">${esc(how.title)}</h3>
+        <div class="steps-grid">
+          ${how.steps.map((s) => `
+            <div class="step-card">
+              <div class="step-num">${s.n}</div>
+              <div class="step-title">${esc(s.t)}</div>
+              <div class="step-desc">${esc(s.d)}</div>
+            </div>
+          `).join('')}
+        </div>
       </div>
     `).join('');
 
     $$('[data-how-tab]', tabsEl).forEach((btn) => btn.addEventListener('click', () => {
       howIndex = Number(btn.dataset.howTab);
-      renderHow();
+      $$('[data-how-tab]', tabsEl).forEach((b) => b.classList.toggle('active-gold', b === btn));
+      $$('[data-how-panel]', panelsEl).forEach((p) => { p.hidden = Number(p.dataset.howPanel) !== howIndex; });
     }));
   }
 
@@ -312,11 +319,12 @@
    * Events
    * ------------------------------------------------------------------- */
 
-  let eventIndex = 0;
   function renderEvents() {
     const tabsEl = $('#event-tabs');
-    const detailEl = $('#event-detail');
-    if (!tabsEl || !detailEl) return;
+    const panelsEl = $('#event-panels');
+    if (!tabsEl || !panelsEl) return;
+
+    let eventIndex = 0;
 
     tabsEl.innerHTML = EVENTS.map((e, i) => `
       <button class="event-tab-btn${i === eventIndex ? ' active' : ''}" data-event-tab="${i}">
@@ -324,51 +332,61 @@
       </button>
     `).join('');
 
-    const ev = EVENTS[eventIndex];
-    detailEl.innerHTML = `
-      <h3 class="event-title">${esc(ev.name)}</h3>
-      <p class="event-def">${esc(ev.def)}</p>
-      <div class="event-stats">
-        <div class="event-stat"><div class="event-stat-label">Format</div><div class="event-stat-val">${esc(ev.format)}</div></div>
-        <div class="event-stat"><div class="event-stat-label">Minimum stake</div><div class="event-stat-val big">${esc(ev.min)}</div></div>
-        <div class="event-stat"><div class="event-stat-label">Maximum stake</div><div class="event-stat-val big">${esc(ev.max)}</div></div>
+    panelsEl.innerHTML = EVENTS.map((ev, i) => `
+      <div class="event-detail" data-event-panel="${i}"${i === eventIndex ? '' : ' hidden'}>
+        <h3 class="event-title">${esc(ev.name)}</h3>
+        <p class="event-def">${esc(ev.def)}</p>
+        <div class="event-stats">
+          <div class="event-stat"><div class="event-stat-label">Format</div><div class="event-stat-val">${esc(ev.format)}</div></div>
+          <div class="event-stat"><div class="event-stat-label">Minimum stake</div><div class="event-stat-val big">${esc(ev.min)}</div></div>
+          <div class="event-stat"><div class="event-stat-label">Maximum stake</div><div class="event-stat-val big">${esc(ev.max)}</div></div>
+        </div>
+        <div class="markets-label">Markets available</div>
+        <div class="market-tags">${ev.markets.map((mk) => `<span class="market-tag">${esc(mk)}</span>`).join('')}</div>
+        <button class="btn btn-primary btn-lg" style="margin-top:30px" data-open-register>${esc(ev.cta)}</button>
       </div>
-      <div class="markets-label">Markets available</div>
-      <div class="market-tags">${ev.markets.map((mk) => `<span class="market-tag">${esc(mk)}</span>`).join('')}</div>
-      <button class="btn btn-primary btn-lg" style="margin-top:30px" data-open-register>${esc(ev.cta)}</button>
-    `;
+    `).join('');
 
     $$('[data-event-tab]', tabsEl).forEach((btn) => btn.addEventListener('click', () => {
       eventIndex = Number(btn.dataset.eventTab);
-      renderEvents();
-      initRegisterDialogButtons();
+      $$('[data-event-tab]', tabsEl).forEach((b) => b.classList.toggle('active', b === btn));
+      $$('[data-event-panel]', panelsEl).forEach((p) => { p.hidden = Number(p.dataset.eventPanel) !== eventIndex; });
     }));
+
+    initRegisterDialogButtons();
   }
 
   /* ---------------------------------------------------------------------
-   * Bet types / markets
+   * Bet types / markets — labels jump to a full accordion of every market
    * ------------------------------------------------------------------- */
 
-  let betIndex = 0;
   function renderMarkets() {
     const tabsEl = $('#bet-tabs');
-    const detailEl = $('#market-detail');
+    const accEl = $('#bet-accordion');
     const faqEl = $('#round-faq');
-    if (!tabsEl || !detailEl || !faqEl) return;
+    if (!tabsEl || !accEl || !faqEl) return;
 
-    tabsEl.innerHTML = BETS.map((b, i) => `<button class="tab-btn${i === betIndex ? ' active-gold' : ''}" data-bet-tab="${i}">${esc(b.label)}</button>`).join('');
+    let openIndex = 0;
 
-    const bet = BETS[betIndex];
-    detailEl.innerHTML = `
-      <h3 class="market-title">${esc(bet.title)}</h3>
-      <p class="market-body">${esc(bet.body)}</p>
-      <p class="market-body">${esc(bet.extra)}</p>
-      <div class="market-facts">
-        <div class="market-fact"><div class="market-fact-label">Risk</div><div class="market-fact-val">${esc(bet.risk)}</div></div>
-        <div class="market-fact"><div class="market-fact-label">Payout potential</div><div class="market-fact-val">${esc(bet.payout)}</div></div>
-        <div class="market-fact"><div class="market-fact-label">Best suited to</div><div class="market-fact-val">${esc(bet.who)}</div></div>
+    tabsEl.innerHTML = BETS.map((b, i) => `<button class="tab-btn${i === openIndex ? ' active-gold' : ''}" data-bet-tab="${i}">${esc(b.label)}</button>`).join('');
+
+    accEl.innerHTML = BETS.map((bet, i) => `
+      <div class="accordion-item${i === openIndex ? ' open' : ''}" data-bet-item="${i}">
+        <div class="accordion-head">
+          <span class="accordion-t">${esc(bet.title)}</span>
+          <span class="accordion-sign">${i === openIndex ? '−' : '+'}</span>
+        </div>
+        <div class="accordion-body">
+          <p class="market-body">${esc(bet.body)}</p>
+          <p class="market-body">${esc(bet.extra)}</p>
+          <div class="market-facts">
+            <div class="market-fact"><div class="market-fact-label">Risk</div><div class="market-fact-val">${esc(bet.risk)}</div></div>
+            <div class="market-fact"><div class="market-fact-label">Payout potential</div><div class="market-fact-val">${esc(bet.payout)}</div></div>
+            <div class="market-fact"><div class="market-fact-label">Best suited to</div><div class="market-fact-val">${esc(bet.who)}</div></div>
+          </div>
+        </div>
       </div>
-    `;
+    `).join('');
 
     faqEl.innerHTML = SIDE_FAQ.map((q) => `
       <div class="round-faq-item">
@@ -377,9 +395,27 @@
       </div>
     `).join('');
 
+    function setOpen(i) {
+      openIndex = i;
+      $$('[data-bet-item]', accEl).forEach((item) => {
+        const open = Number(item.dataset.betItem) === i;
+        item.classList.toggle('open', open);
+        $('.accordion-sign', item).textContent = open ? '−' : '+';
+      });
+      $$('[data-bet-tab]', tabsEl).forEach((b) => b.classList.toggle('active-gold', Number(b.dataset.betTab) === i));
+    }
+
+    $$('[data-bet-item]', accEl).forEach((item) => {
+      $('.accordion-head', item).addEventListener('click', () => {
+        const n = Number(item.dataset.betItem);
+        setOpen(openIndex === n ? -1 : n);
+      });
+    });
+
     $$('[data-bet-tab]', tabsEl).forEach((btn) => btn.addEventListener('click', () => {
-      betIndex = Number(btn.dataset.betTab);
-      renderMarkets();
+      const n = Number(btn.dataset.betTab);
+      setOpen(n);
+      $(`[data-bet-item="${n}"]`, accEl).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }));
   }
 
@@ -387,24 +423,30 @@
    * FAQ / odds
    * ------------------------------------------------------------------- */
 
-  let faqIndex = 0;
   function renderFaq() {
     const tabsEl = $('#faq-tabs');
-    const itemsEl = $('#faq-items');
-    if (!tabsEl || !itemsEl) return;
+    const panelsEl = $('#faq-panels');
+    if (!tabsEl || !panelsEl) return;
+
+    let faqIndex = 0;
 
     tabsEl.innerHTML = FAQ.map((f, i) => `<button class="tab-btn${i === faqIndex ? ' active-flat' : ''}" data-faq-tab="${i}">${esc(f.label)}</button>`).join('');
 
-    itemsEl.innerHTML = FAQ[faqIndex].items.map((it) => `
-      <div class="faq-card">
-        <h3 class="faq-q">${esc(it.q)}</h3>
-        <p class="faq-a">${esc(it.a)}</p>
+    panelsEl.innerHTML = FAQ.map((f, i) => `
+      <div class="faq-grid" data-faq-panel="${i}"${i === faqIndex ? '' : ' hidden'}>
+        ${f.items.map((it) => `
+          <div class="faq-card">
+            <h3 class="faq-q">${esc(it.q)}</h3>
+            <p class="faq-a">${esc(it.a)}</p>
+          </div>
+        `).join('')}
       </div>
     `).join('');
 
     $$('[data-faq-tab]', tabsEl).forEach((btn) => btn.addEventListener('click', () => {
       faqIndex = Number(btn.dataset.faqTab);
-      renderFaq();
+      $$('[data-faq-tab]', tabsEl).forEach((b) => b.classList.toggle('active-flat', b === btn));
+      $$('[data-faq-panel]', panelsEl).forEach((p) => { p.hidden = Number(p.dataset.faqPanel) !== faqIndex; });
     }));
   }
 
